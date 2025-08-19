@@ -1,19 +1,35 @@
-import { Component, input, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  inject,
+  input,
+  ViewEncapsulation,
+} from "@angular/core";
 
 @Component({
-  selector: 'app-control',
+  selector: "app-control",
   standalone: true,
   imports: [],
-  templateUrl: './control.component.html',
-  styleUrl: './control.component.css',
-  encapsulation:  
-  ViewEncapsulation.None,
+  templateUrl: "./control.component.html",
+  styleUrl: "./control.component.css",
+  encapsulation: ViewEncapsulation.None,
+  // This approach is to be prefered over the @HostBinding Decorator (see below in Control Component)
   host: {
-    class: 'control'
-
-  }
-
+    class: "control",
+    "(click)": "onClick()",
+  },
 })
 export class ControlComponent {
-label = input.required<string>();
+  // @HostBinding("class") className = "control";
+  // @HostListener('click')  onClick() {
+  //   console.log("Clicked!");
+  // }
+
+  label = input.required<string>();
+  private el = inject(ElementRef);
+  
+  onClick() {
+    console.log("Clicked!");
+    console.log(this.el);
+  }
 }
