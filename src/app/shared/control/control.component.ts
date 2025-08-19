@@ -9,12 +9,13 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'app-control',
+  selector: "app-control",
   standalone: true,
   imports: [],
-  templateUrl: './control.component.html',
-  styleUrl: './control.component.css',
+  templateUrl: "./control.component.html",
+  styleUrl: "./control.component.css",
   encapsulation: ViewEncapsulation.None,
+  // This approach is to be prefered over the @HostBinding Decorator (see below in Control Component)
   host: {
     class: 'control',
     '(click)': 'onClick()',
