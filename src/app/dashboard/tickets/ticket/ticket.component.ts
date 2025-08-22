@@ -1,4 +1,4 @@
-import { Component, input, signal } from "@angular/core";
+import { Component, input, output, signal } from "@angular/core";
 
 import { ControlComponent } from "../../../shared/control/control.component";
 import { Ticket } from "../ticket.model";
@@ -11,7 +11,11 @@ import { Ticket } from "../ticket.model";
   styleUrl: "./ticket.component.css",
 })
 export class TicketComponent {
+  // @Input({}) ...
   data = input.required<Ticket>();
+
+  // @Output('closeTicket')
+  close = output();
   detailsVisible = signal(false);
 
   onToggleDetails() {
@@ -19,5 +23,9 @@ export class TicketComponent {
     // turns to the opposite of the default value
 
     this.detailsVisible.update((wasVisible) => !wasVisible);
+  }
+
+  onMarkAsCompleted() {
+    this.close.emit();
   }
 }
