@@ -1,10 +1,4 @@
-<div
-  [class]="{
-    status: true,
-    'status-online': currentStatus === 'online',
-    'status-offline': currentStatus === 'offline',
-    'status-unknown': currentStatus === 'unknown'
-  }" >
+<div id="status">
   <!-- [style.fontSize]="'64px'"> -->
   <!-- [style]="{'font-size': '64px'}"> -->
   @if (currentStatus === 'online') {
